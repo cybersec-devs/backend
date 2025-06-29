@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Médicos</title>
+</head>
+<body>
+    <h1>Médicos Cadastrados</h1>    
+        {% for medico in medicos %}
+        <div>
+               {{ medico.id }}
+               {{ medico.nome }}
+               {{ medico.especialidade }}
+               {{ medico.crm }}
+        </div>
+        {% endfor %}
+</body>
+</html>
