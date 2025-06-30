@@ -43,6 +43,82 @@
 
 ---
 
+## 🌐 Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto com, por exemplo:
+
+```
+DATABASE_URL=sqlite:///hospital.db
+SECRET_KEY=sua_chave_secreta
+```
+
+- `DATABASE_URL`: string de conexão do banco de dados (ex: PostgreSQL, MySQL, SQLite)
+- `SECRET_KEY`: chave secreta para segurança do Flask
+
+---
+
+## 📦 Estrutura de Pastas
+
+- `controllers/` - Lógica dos endpoints da API
+- `models/` - Definição das entidades do banco
+- `repositories/` - Acesso e manipulação dos dados
+- `swagger/` - Configuração e documentação da API
+- `config.py` - Configurações globais do projeto
+- `app.py` - Inicialização da aplicação Flask
+
+---
+
+## 📚 Exemplos de Requisições
+
+### Cadastro de Médico
+**POST /medicos**
+```json
+{
+  "nome": "Dr. João",
+  "especialidade": "Cardiologia",
+  "crm": "12345"
+}
+```
+
+### Resposta de sucesso
+```json
+{
+  "id": 1,
+  "nome": "Dr. João",
+  "especialidade": "Cardiologia",
+  "crm": "12345"
+}
+```
+
+### Cadastro de Paciente
+**POST /pacientes**
+```json
+{
+  "nome": "Maria Silva",
+  "medico_id": 1
+}
+```
+
+### Cadastro de Consulta
+**POST /consultas**
+```json
+{
+  "data": "2024-06-01",
+  "horario": "14:00",
+  "descricao": "Consulta de rotina",
+  "paciente_id": 1
+}
+```
+
+### Exemplo de resposta de erro
+```json
+{
+  "erro": "CRM já cadastrado."
+}
+```
+
+---
+
 ## 🚀 Como executar o projeto
 
 ### 1. Pré-requisitos
@@ -102,11 +178,28 @@ Para criar as tabelas, o sistema usa db.create_all() na inicialização do app.
 
 Em caso de dúvidas, verifique os logs no terminal onde o Flask está rodando.
 
----
+## 🏭 Rodando em Produção
 
-#### Tecnologias Utilizadas
-- Python + Flask + SQLAlchemy
-- Swagger (Flask-RESTX)
+Para rodar em produção, recomenda-se utilizar um servidor WSGI como Gunicorn (Linux) ou Waitress (Windows). Exemplo com Gunicorn:
+
+```bash
+pip install gunicorn
+cd api
+export FLASK_APP=app.py
+export FLASK_ENV=production
+export DATABASE_URL=sqlite:///hospital.db  # ou sua string de conexão
+export SECRET_KEY=sua_chave_secreta
+
+gunicorn -w 4 -b 0.0.0.0:5000 app:app
+```
+
+No Windows, pode-se usar Waitress:
+
+```bash
+pip install waitress
+python -m waitress --host=0.0.0.0 --port=5000 app:app
+```
+
 
 ---
 
