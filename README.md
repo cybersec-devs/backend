@@ -1,10 +1,4 @@
-# 🏥 Sistema de Hospital - BACKEND - Projeto Prático
-
-Atenção: 
-Aplicação Backend está disponível em: <https://hospital-backend-yeq5.onrender.com/>
-Aplicação FrontEnd está disponível em: <https://cybersec-devs.github.io/frontend/>
-
-Caso queira executar na sua própria máquina, siga as orientações deste documento.
+# 🏥 Sistema de Hospital - BACKEND - Projeto Prático  
 
 ## Integrantes
 
@@ -61,27 +55,39 @@ Caso queira executar na sua própria máquina, siga as orientações deste docum
 ```bash
 git clone https://github.com/cybersec-devs/backend.git
 cd seu-repositorio/backend/api
+```
 
-### 3. Criar e ativar o ambiente virtual
-No Linux/macOS:  
+### 3. Crie e ative o ambiente virtual
+#### No Linux/macOS:  
+```bash
 python3 -m venv venv  
 source venv/bin/activate  
- 
-No Windows (PowerShell):  
+pip install --upgrade pip
+```
+
+#### No Windows (PowerShell):  
+```bash
 python -m venv venv  
 .\venv\Scripts\Activate.ps1  
+python -m pip install --upgrade pip
+```
+#### No Windows (cmd):   
 
-Ou no cmd:   
+```bash
 python -m venv venv  
 venv\Scripts\activate.bat  
+python -m pip install --upgrade pip
+```
 
 ### 4. Instalar as dependências
+```bash
 pip install -r requirements.txt
-
+```
 
 ### 5. Rodar o servidor Flask
-python app.py  
-
+```bash
+python api/app.py  
+```
 
 O servidor estará rodando em http://127.0.0.1:5000/
 
@@ -95,3 +101,19 @@ Lá você poderá testar todos os endpoints do sistema (médicos, pacientes, con
 Para criar as tabelas, o sistema usa db.create_all() na inicialização do app.
 
 Em caso de dúvidas, verifique os logs no terminal onde o Flask está rodando.
+
+---
+
+#### Tecnologias Utilizadas
+- Python + Flask + SQLAlchemy
+- Swagger (Flask-RESTX)
+
+---
+
+**Atenção - Visitar o Projeto em Produção**: 
+
+- Aplicação Backend está disponível em: <https://hospital-backend-yeq5.onrender.com/>
+- Aplicação FrontEnd está disponível em: <https://cybersec-devs.github.io/frontend/>
+
+
+Caso queira executar na sua própria máquina, siga as orientações deste documento.
