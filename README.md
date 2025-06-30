@@ -1,5 +1,11 @@
 # 🏥 Sistema de Hospital - BACKEND - Projeto Prático
 
+Atenção: 
+Aplicação Backend está disponível em: <https://hospital-backend-yeq5.onrender.com/>
+Aplicação FrontEnd está disponível em: <https://cybersec-devs.github.io/frontend/>
+
+Caso queira executar na sua própria máquina, siga as orientações deste documento.
+
 ## Integrantes
 
 - Enrico Carrano  
