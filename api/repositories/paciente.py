@@ -65,7 +65,7 @@ class PacienteRepository:
         try:
             db.session.delete(paciente)
             db.session.commit()
-            return {'message': 'Paciente excluído com sucesso.'}, 200
+            return {'message': 'Paciente excluído com sucesso.'}, 204
         except SQLAlchemyError:
             db.session.rollback()
             return {'error': 'Erro ao excluir o paciente.'}, 500    

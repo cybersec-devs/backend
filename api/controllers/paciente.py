@@ -40,5 +40,5 @@ def update_paciente(paciente_id):
 def delete_paciente(paciente_id):
     paciente = PacienteRepository.delete(paciente_id)
     if paciente:
-        return jsonify({'message': 'Paciente excluído'})
+        return jsonify({'message': 'Paciente excluído'}), 204  # 204 No Content é padrão para DELETE bem sucedido
     return jsonify({'error': 'Paciente não encontrado'}), 404

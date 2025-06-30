@@ -1,12 +1,13 @@
 from models.consulta import Consulta
 from models.paciente import Paciente
 from config import db
-from datetime import datetime
+from datetime import datetime, date
 from sqlalchemy.exc import SQLAlchemyError
 
 class ConsultaRepository:
     @staticmethod
     def create(data, horario, descricao, paciente_id):
+        print(horario)
         # Valida se o paciente existe
         paciente = Paciente.query.get(paciente_id)
         if not paciente:
@@ -14,8 +15,25 @@ class ConsultaRepository:
  
         # Cria e salva a consulta    
         # Conversão correta
-        data_obj = datetime.strptime(data, '%d/%m/%Y').date()
-        horario_obj = datetime.strptime(horario, '%H:%M:%S').time()
+        #data_obj = datetime.strptime(data, '%d/%m/%Y').date()
+        # Verifica se `data` é uma string, se for, converte
+        if isinstance(data, str):
+            data_obj = datetime.strptime(data, '%d/%m/%Y').date()
+        elif isinstance(data, date):
+            data_obj = data
+        else:
+            data_obj = date.today()
+
+        #horario_obj = datetime.strptime(horario, '%H:%M:%S').time()
+        from datetime import time
+
+        if isinstance(horario, str):
+            horario_obj = datetime.strptime(horario, '%H:%M:%S').time()
+        elif isinstance(horario, time):
+            horario_obj = horario
+        else:
+            horario_obj = datetime.now().time()  # <-- horário atual
+
         
         consulta = Consulta(data=data_obj, horario=horario_obj, descricao=descricao, paciente_id=paciente_id)
         db.session.add(consulta)
@@ -43,14 +61,13 @@ class ConsultaRepository:
         return consultas_pacientes.to_dict(), 200          
 
     @staticmethod
-    def update(consulta_id, data=None, horario=None, descricao=None):
+    def update(consulta_id, data, horario, descricao=None):
         consulta = Consulta.query.get(consulta_id)
 
-        if consulta:
-            
+        if consulta:            
             if data:
                 # Converte string para objeto datetime.date
-                data_obj = datetime.strptime(data, '%d/%m/%Y').date()
+                data_obj =  datetime.strptime(data, '%d/%m/%Y').date()
                 consulta.data = data_obj
             if horario:
                 horario_obj = datetime.strptime(horario, '%H:%M:%S').time()
@@ -73,3 +90,5 @@ class ConsultaRepository:
         except SQLAlchemyError:
             db.session.rollback()
             return {'error': 'Erro ao excluir o paciente.'}, 500    
+
+
