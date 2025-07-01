@@ -66,8 +66,8 @@ class ConsultaResource(Resource):
         data_obj=data['data']
         horario=data['horario']
         descricao=data.get('descricao')
-        
-        return ConsultaRepository.update(id_consulta, data_obj, horario, descricao)
+        response, status_code = ConsultaRepository.update(id_consulta, data_obj, horario, descricao)
+        return response, status_code
 
     def delete(self, id_consulta):
         """Exclui uma consulta"""
