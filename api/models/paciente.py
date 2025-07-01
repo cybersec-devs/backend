@@ -15,7 +15,12 @@ class Paciente(db.Model):
     def __repr__(self):
         return f'<Paciente {self.nome}>'
 
-
+    # def to_dict(self):
+    #     return {
+    #         'id': self.id,
+    #         'nome': self.nome,
+    #         'medico_id': self.medico_id
+    #     }
     def to_dict(self):
         return {
             'id': self.id,
@@ -28,10 +33,3 @@ class Paciente(db.Model):
                 'especialidade': self.medico.especialidade
             } if self.medico else None
         }
-
-    # def to_dict(self):
-    #     return {
-    #         'id': self.id,
-    #         'nome': self.nome,
-    #         'medico_id': self.medico_id
-    #     }

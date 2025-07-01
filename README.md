@@ -5,7 +5,7 @@
 - Enrico Carrano  
 - Glauber Ariel Magalhães  
 - Gregorio Queiroz  
-- Eduardo Silva  
+- Eduardo Alves Martins Silva  
 - Welther Moraes  
 
 ---
