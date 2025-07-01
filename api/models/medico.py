@@ -14,8 +14,7 @@ class Medico(db.Model):
         self.especialidade = especialidade
         self.crm = crm
 
-    def __repr__(self):
-        return f'<Medico {self.nome}>'
+
 
     def to_dict(self):
         return {
@@ -24,3 +23,6 @@ class Medico(db.Model):
             'especialidade': self.especialidade,
             'crm': self.crm
         }
+
+    def __repr__(self):
+        return f'<Medico {self.nome}>'

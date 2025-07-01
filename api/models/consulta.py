@@ -17,10 +17,6 @@ class Consulta(db.Model):
         self.descricao = descricao
         self.paciente_id = paciente_id
 
-    def __repr__(self):
-        return f'<Consulta {self.id}>'
-
-
     def to_dict(self):
         return {
             'id': self.id,
@@ -33,3 +29,9 @@ class Consulta(db.Model):
                 'nome': self.paciente.nome
             } if self.paciente else None
         }
+
+
+    def __repr__(self):
+        return f'<Consulta {self.id}>'
+
+
